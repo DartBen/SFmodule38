@@ -19,6 +19,10 @@ namespace HomeApp.Pages
         public LoginPage()
         {
             InitializeComponent();
+
+            // Изменяем внешний вид кнопки для Windows-версии
+            if (Device.RuntimePlatform == Device.UWP)
+                loginButton.CornerRadius = 0;
         }
         /// <summary>
         /// По клику обрабатываем счётчик и выводим разные сообщения
