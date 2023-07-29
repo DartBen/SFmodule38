@@ -11,7 +11,7 @@ namespace HomeApp
         {
             InitializeComponent();
 
-            MainPage = new PaddingPage(); //new LoginPage();
+            MainPage = new CsharpPaddingPage(); //new LoginPage();
             //new RoomsPage(); //new RegisterPage(); //new LoginPage(); // new LoadingPage(); new MainPage();
         }
 
