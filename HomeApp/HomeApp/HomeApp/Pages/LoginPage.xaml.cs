@@ -31,23 +31,22 @@ namespace HomeApp.Pages
         {
             if (loginCouner == 0)
             {
-                // Если первая попытка - просто меняем сообщения
                 loginButton.Text = $"Выполняется вход..";
             }
-            else if (loginCouner > 5) // Слишком много попыток - показываем ошибку
+            else if (loginCouner > 5)
             {
-                // Деактивируем кнопку
                 loginButton.IsEnabled = false;
-                // Показываем текстовое сообщение об ошибке
-                infoMessage.Text = "Слишком много попыток! Попробуйте позже.";
+
+                var infoMessage = (Label)stackLayout.Children.Last();
+                infoMessage.Text = "Слишком много попыток! Попробуйте позже";
+                // задаем красный цвет сообщения
+                infoMessage.TextColor = Color.FromRgb(255, 0, 0);
             }
             else
             {
-                // Изменяем текст кнопки и показываем количество попыток входа
                 loginButton.Text = $"Выполняется вход...   Попыток входа: {loginCouner}";
             }
 
-            // Увеличиваем счетчик
             loginCouner += 1;
         }
     }
