@@ -35,7 +35,7 @@ namespace HomeApp.Pages
                 // Деактивируем кнопку
                 loginButton.IsEnabled = false;
                 // Показываем текстовое сообщение об ошибке
-                errorMessage.Text = "Слишком много попыток! Попробуйте позже.";
+                infoMessage.Text = "Слишком много попыток! Попробуйте позже.";
             }
             else
             {
