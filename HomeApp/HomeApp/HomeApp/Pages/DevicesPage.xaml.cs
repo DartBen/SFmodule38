@@ -1,16 +1,11 @@
-﻿using HomeApp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using HomeApp.Models;
+using System.Threading.Tasks;
 
 namespace HomeApp.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DevicesPage : ContentPage
     {
         public DevicesPage()
@@ -79,19 +74,32 @@ namespace HomeApp.Pages
         /// <summary>
         /// Показ изображения по нажатию
         /// </summary>
-        public async Task ShowImage(object sender, EventArgs e, string imageName)
+        public Task ShowImage(object sender, EventArgs e, string imageName)
         {
-            // Если изображение отсутствует - показываем информационное окно
-            if (String.IsNullOrEmpty(imageName))
+            // Если изображение отсутствует
+            if (string.IsNullOrEmpty(imageName))
             {
-                await DisplayAlert("", "Изображение устройства отсутствует", "OK");
-                return;
+                //await DisplayAlert("", "Изображение устройства отсутствует", "OK");
+
+                // Создаем новый объект изображения
+                Image img = new Image();
+                // Подключаем удаленный ресурс в качестве источника изображения
+                img.Source = new UriImageSource
+                {
+                    CachingEnabled = false,
+                    Uri = new Uri("https://i.stack.imgur.com/y9DpT.jpg")
+                };
+
+                // Инициализируем страницу
+                Content = img;
+                return Task.CompletedTask;
             }
 
             // При наличии изображения - загружаем его по заданному пути
             Image image = new Image();
             image.Source = ImageSource.FromResource($"HomeApp.Images.{imageName}");
             Content = image;
+            return Task.CompletedTask;
         }
     }
 }
